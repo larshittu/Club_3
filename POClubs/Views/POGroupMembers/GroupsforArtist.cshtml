@@ -1,0 +1,65 @@
+@model IEnumerable<POClubs.Models.GroupMember>
+@{
+    ViewData["Title"] = "Groups for Artist";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Groups for Artist</title>
+</head>
+
+<body>
+   
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateJoined)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateLeft)
+                </th>
+                <th>Name</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ArtistIdGroupNavigation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ArtistIdMemberNavigation)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateJoined)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateLeft)
+                    </td>
+                    <td>
+                       @String.Format("{0} {1}", item.ArtistIdMemberNavigation.NameAddress.FirstName,
+                    item.ArtistIdMemberNavigation.NameAddress.LastName).Trim() 
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ArtistIdGroupNavigation.ArtistId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ArtistIdMemberNavigation.ArtistId)
+                    </td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+    <p>
+      <a href="~/POArtist/Index">Back to Artist List</a>
+    </p>
+</body>
+
+</html>

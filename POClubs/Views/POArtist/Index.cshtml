@@ -1,0 +1,66 @@
+﻿@model IEnumerable<POClubs.Models.Artist>
+
+@{
+    ViewData["Title"] = "Artist";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Artist List</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New Artist</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MinimumHourlyRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NameAddress)
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Company
+            </th>
+            <th>View</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinimumHourlyRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameAddress.NameAddressId)
+            </td>
+            <td>
+                @String.Format("{0} {1}", item.NameAddress.FirstName, item.NameAddress.LastName).Trim()
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.NameAddress.CompanyName)
+            </td>
+            <td>
+                <a href="~/POGroupMembers/Index?ArtistId=@item.ArtistId">@String.Format("View {0}", item.NameAddress.FirstName).Trim()</a>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ArtistId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ArtistId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ArtistId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

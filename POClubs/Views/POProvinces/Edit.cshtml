@@ -1,0 +1,63 @@
+﻿@model POClubs.Models.Province
+
+@{
+    ViewData["Title"] = "Edit Province";
+}
+
+<h1>Edit</h1>
+
+<h4>Province</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProvinceCode" class="control-label"></label>
+                <input type="text" asp-for="ProvinceCode" readonly="readonly" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                    <label asp-for="CountryCode" class="control-label"></label>
+                    <select asp-for="CountryCode" class="form-control" asp-items="ViewBag.CountryCode"></select>
+                    <span asp-validation-for="CountryCode" class="text-danger"></span>
+                </div>*@
+            <input type="hidden" asp-for="CountryCode" class="form-control" value="@ViewBag.CountryCode" />
+            <div class="form-group">
+                <label asp-for="SalesTaxCode" class="control-label"></label>
+                <input asp-for="SalesTaxCode" class="form-control" />
+                <span asp-validation-for="SalesTaxCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalesTax" class="control-label"></label>
+                <input asp-for="SalesTax" class="form-control" />
+                <span asp-validation-for="SalesTax" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IncludesFederalTax" /> @Html.DisplayNameFor(model => model.IncludesFederalTax)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstPostalLetter" class="control-label"></label>
+                <input asp-for="FirstPostalLetter" class="form-control" />
+                <span asp-validation-for="FirstPostalLetter" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
